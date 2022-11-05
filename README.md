@@ -18,12 +18,22 @@ The launcher takes its configuration from the file `.\Config\config.json` in the
     "WorldName": "TestWorld"
 }
 ```
-The `TargetDir` parameter is the parent directory and `WorldName` is where the server contents will be unpacked.
 
-The `WorldName` setting can be overridden by the first command line argument, e.g.:
+### Parameters
 
+* `TargetDir` is the parent directory where the unpacked servers are stored
+* `WorldName` is where each server's contents will be unpacked
+* `DownloadPage` is the link to the webpage where you download Bedrock server releases
+* `PreserveFiles` is the list of files/directories you don't want overwritten when unpacking the new server
+
+You shouldn't have to update the default `DownloadPage` or `PreserveFiles`, but if there is some kind of issue please post it.
+
+## CLI
+There isn't really a CLI, but the `WorldName` setting can be overridden by the first command line argument, e.g.:
 ```powershell
 .\BedrockServerLauncher.exe Terraria
 ```
+
+## Server Commands
 
 Does not currently support server commands.
