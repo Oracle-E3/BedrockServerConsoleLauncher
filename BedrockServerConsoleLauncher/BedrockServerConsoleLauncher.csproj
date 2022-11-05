@@ -5,6 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ApplicationIcon>Resources\bedrock.ico</ApplicationIcon>
     <AssemblyName>BedrockServerLauncher</AssemblyName>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
