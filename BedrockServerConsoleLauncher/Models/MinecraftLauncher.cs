@@ -27,6 +27,7 @@ namespace MinecraftLauncherConsole.Models
 
         #region PUBLIC_MEMBERS
         public Configuration Config { get; private set; }
+        public bool Running { get => _Server.HasExited == false; }
         #endregion PUBLIC_MEMBERS
 
         #region PUBLIC_METHODS
@@ -75,7 +76,7 @@ namespace MinecraftLauncherConsole.Models
             foreach (var entry in serverPackage.Entries)
             {
                 var destPath = Path.Combine(latestInstallPath, entry.FullName);
-                if (Config.PreserveFiles.Contains(entry.FullName) == false)
+                if (!Config.PreserveFiles.Contains(entry.FullName) || !Directory.Exists(destPath))
                 {
                     if (entry.LastWriteTime > Directory.GetLastWriteTimeUtc(destPath))
                     {

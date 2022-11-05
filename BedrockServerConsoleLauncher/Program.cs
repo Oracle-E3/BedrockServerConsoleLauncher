@@ -27,12 +27,13 @@ namespace MinecraftLauncherConsole
             }
 
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(CurrentDomain_ProcessExit);
+            Console.CancelKeyPress += new ConsoleCancelEventHandler(CurrentDomain_ProcessExit);
 
             launcher = new MinecraftLauncher(config);
             await launcher.Update();
             launcher.Start();
 
-            while (true)
+            while (launcher.Running)
             {
                 Thread.Sleep(5000);
             }
