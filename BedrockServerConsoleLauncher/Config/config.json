@@ -1,0 +1,11 @@
+{
+    "DownloadPage": "https://www.minecraft.net/en-us/download/server/bedrock",
+    "PreserveFiles": [
+        "allowlist.json",
+        "permissions.json",
+        "server.properties",
+        "worlds"
+    ],
+    "TargetDir": "C:\\Minecraft",
+    "WorldName": "TestWorld"
+}

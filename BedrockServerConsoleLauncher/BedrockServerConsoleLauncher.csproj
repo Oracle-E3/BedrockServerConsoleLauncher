@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ApplicationIcon>Resources\bedrock.ico</ApplicationIcon>
+    <AssemblyName>BedrockServerLauncher</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\bedrock.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetZip" Version="1.15.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
