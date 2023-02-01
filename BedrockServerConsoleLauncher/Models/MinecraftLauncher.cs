@@ -23,6 +23,21 @@ namespace MinecraftLauncherConsole.Models
         private readonly Regex _LatestDownloadableURLRegex = new Regex(@"https://minecraft\.azureedge\.net/bin-win/bedrock-server-[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+.zip");
         private readonly HttpClient _WebClient;
         private Process _Server { get; set; }
+        private List<string> _ValidCommands = new List<string>()
+        {
+            @"kick (?<playerNameOrXuid>\w+)\s(?<reason>\w+)?",
+            @"stop",
+            @"save (hold|resume|query)",
+            @"allowlist (on|off|list|reload)",
+            @"allowlist (add|remove) (?<playerNameOrXuid>\w+)",
+            @"permission (list|reload)",
+            @"op (?<playerNameOrXuid>\w+)",
+            @"deop (?<playerNameOrXuid>\w+)",
+            @"changesetting (?<setting>\w+) (?<value>\w+)",
+            @"save hold",
+            @"save query",
+            @"save resume",
+        };
         #endregion PRIVATE_MEMBERS
 
         #region PUBLIC_MEMBERS
@@ -142,6 +157,40 @@ namespace MinecraftLauncherConsole.Models
             _Server.Kill();
             _Server.CancelOutputRead();
             return _Server.ExitCode;
+        }
+
+        public bool CheckCommand(string command)
+        {
+            bool valid = false;
+            foreach (var pattern in _ValidCommands)
+            {
+                var match = Regex.Match(command, pattern);
+                if (match.Success)
+                {
+                    valid = true;
+                    break;
+                }
+            }
+            return valid;
+        }
+
+        public void SendCommand(string command)
+        {
+            if (_Server.HasExited == false)
+            {
+                if (CheckCommand(command))
+                {
+                    _Server.StandardInput.WriteLine(command);
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid command: '{command}'");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Server already exited");
+            }
         }
         #endregion PUBLIC_METHODS
 

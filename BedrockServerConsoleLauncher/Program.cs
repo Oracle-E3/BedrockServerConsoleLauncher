@@ -35,7 +35,8 @@ namespace MinecraftLauncherConsole
 
             while (launcher.Running)
             {
-                Thread.Sleep(5000);
+                var line = Console.ReadLine();
+                launcher.SendCommand(line);
             }
         }
         static void CurrentDomain_ProcessExit(object sender, EventArgs e)
