@@ -36,4 +36,20 @@ There isn't really a CLI, but the `WorldName` setting can be overridden by the f
 
 ## Server Commands
 
-Does not currently support server commands.
+The following server commands are currently supported:
+
+```
+kick <playerNameOrXuid> <reason>
+stop
+save [hold|resume|query]
+allowlist [on|off|list|reload]
+allowlist [add|remove] <playerNameOrXuid>
+permission [list|reload]
+op <playerNameOrXuid>
+deop <playerNameOrXuid>
+changesetting <setting> <value>
+save hold
+save query
+save resume
+```
+
